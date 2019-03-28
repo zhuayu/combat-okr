@@ -31,5 +31,41 @@ Page({
         }]
       }]
     }
+  },
+  handleShowActionSheet: function(event) {
+    wx.showActionSheet({
+      itemList: ['完成'],
+      itemColor: '#333',
+      success(res) {
+        console.log(res.tapIndex)
+      },
+      fail(res) {
+        console.log(res.errMsg)
+      }
+    })
+  },
+  handleKeyresultActionSheet: function(event) {
+    wx.showActionSheet({
+      itemList: ['完成'],
+      itemColor: '#333',
+      success(res) {
+        console.log(res.tapIndex)
+      },
+      fail(res) {
+        console.log(res.errMsg)
+      }
+    })
+  },
+  handleObjectiveActionSheet: function(event) {
+    wx.showActionSheet({
+      itemList: ['完成','删除'],
+      itemColor: '#333',
+      success(res) {
+        console.log(res.tapIndex)
+      },
+      fail(res) {
+        console.log(res.errMsg)
+      }
+    })
   }
 })

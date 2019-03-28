@@ -1,12 +1,12 @@
 {
   "pages": [
-    "pages/okr_detail/okr_detail",
-    "pages/okr/okr",
-    "pages/history/history",
+    "pages/welcome/welcome",
     "pages/todo/todo",
+    "pages/history/history",
+    "pages/okr/okr",
+    "pages/okr_detail/okr_detail",
     "pages/okr_edit/okr_edit",
-    "pages/okr_create/okr_create",
-    "pages/welcome/welcome"
+    "pages/okr_create/okr_create"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
