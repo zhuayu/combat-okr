@@ -1,0 +1,24 @@
+.todo-tips{
+  font-size: 12px;
+  color: #999;
+  margin-bottom: 10px;
+}
+
+.todo-item{
+  background: #f5f5f5;
+  padding: 10px;
+  margin-bottom: 5px;
+  overflow: hidden;
+}
+
+.todo-title{
+  font-size: 14px;
+  line-height: 20px;
+  color: #333;
+  margin-bottom: 4px;
+}
+
+.todo-created_time{
+  font-size: 12px;
+  color: #999;
+}
