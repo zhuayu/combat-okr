@@ -18,6 +18,6 @@
         </view>
       </view>
     </view>
-    <button class="login-btn" hover-class="login-btn_hover">立即体验</button>
+    <button class="login-btn" hover-class="login-btn_hover" bindtap="handleLogin">立即体验</button>
   </view>
 </view>

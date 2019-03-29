@@ -3,7 +3,9 @@ const router = require('koa-router')({
 })
 
 const testController = require('./../controllers/test.js')
+const userController = require('./../controllers/user.js')
 
-router.get('/', testController.test)
+router.get('/test', testController.test)
+router.post('/login', userController.login)
 
 module.exports = router

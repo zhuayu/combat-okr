@@ -1,3 +1,5 @@
+import Todo from './../../models/todo.js';
+
 Page({
   data: {
     todos: [{
@@ -17,6 +19,11 @@ Page({
       created_time: '2018-3-28'
     }],
     value: '',
+  },
+  onLoad: function() {
+    Todo.test().then(res => {
+      console.log(res)
+    })
   },
   handleConfirm: function(event) {
     let value = event.detail.value;
