@@ -10,7 +10,7 @@ class Base {
   }
 
   select(params) {
-    return knex(this.table).select().where(params)
+    return knex(this.table).select().where(params).orderBy('created_time', 'desc')
   }
 
   insert(params){

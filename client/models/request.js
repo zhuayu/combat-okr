@@ -15,10 +15,22 @@ export const request = (params) => {
         if(res.data.code === 200){
           resolve(res.data.data)
         }else{
+          wx.showModal({
+            title: '注意',
+            content: res.data.data.message,
+            confirmText: "确定",
+            showCancel: false,
+          })
           reject()
         }
       },
       fail: (err) => {
+        wx.showModal({
+          title: '服务端出现故障',
+          content: err.errMsg,
+          confirmText: "确定",
+          showCancel: false,
+        })
         reject()
       }
     })
