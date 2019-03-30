@@ -9,10 +9,28 @@
 }
 
 .objective-item{
+  position: relative;
   background: #f5f5f5;
   padding: 10px;
   margin-bottom: 5px;
   overflow: hidden;
+}
+
+.objective-item.finished:after{
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  width: 80px;
+  height: 80px;
+  border: 2px solid #999;
+  content: '完成';
+  line-height: 78px;
+  text-align: center;
+  font-size: 22px;
+  color: #999;
+  border-radius: 50%;
+  opacity: .4;
+  transform: rotate(-45deg);
 }
 
 .objective-title{

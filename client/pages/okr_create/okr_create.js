@@ -1,3 +1,5 @@
+import Okr from './../../models/okr.js';
+
 Page({
   data: {
     objective: '',
@@ -40,6 +42,16 @@ Page({
       return
     }
     let data = { objective, keyresults }
-    console.log(data)
+    Okr.insert(data).then((res)=>{
+      wx.showToast({
+        title: '成功',
+        icon: 'success',
+        duration: 1000,
+        mask: true
+      })
+      setTimeout(()=>{
+        wx.switchTab({ url: '/pages/okr/okr' })
+      },1000)
+    })
   }
 })

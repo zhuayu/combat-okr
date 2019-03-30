@@ -8,10 +8,28 @@
 }
 
 .objective-item{
+  position: relative;
   background: #f5f5f5;
   padding: 10px;
   margin-bottom: 5px;
   overflow: hidden;
+}
+
+.objective-item.finished:after{
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  width: 80px;
+  height: 80px;
+  border: 2px solid #999;
+  content: '完成';
+  line-height: 78px;
+  text-align: center;
+  font-size: 22px;
+  color: #999;
+  border-radius: 50%;
+  opacity: .4;
+  transform: rotate(-45deg);
 }
 
 .objective-item--hover{
@@ -47,17 +65,15 @@
   left: 40rpx;
 }
 
+
 .keyresult-item{
   position: relative;
-  padding-bottom: 30rpx;
-  padding-right: 30rpx;
   border-bottom: 1px solid #f5f5f5;
-  margin-bottom: 30rpx;
   font-size: 14px;
   line-height: 1.5;
 }
 
-.keyresult-item--hover .keyresult-title{
+.keyresult-item--hover .keyresult-info{
   opacity: .8;
   background: #f1f1f1;
 }
@@ -82,10 +98,26 @@
   border-bottom: none;
 }
 
-.keyresult-title{
+.keyresult-info{
+  display: flex;
   font-size: 14px;
   color: #666;
-  margin-bottom: 20rpx;
+}
+
+.keyresult-title{
+  flex: 1;
+  font-size: 14px;
+  color: #666;
+}
+
+.keyresult-tag{
+  font-size: 12px;
+  color: #999;
+  margin-right: 4px;
+}
+
+.todos-list{
+  margin-top: 20rpx;
 }
 
 .todo-title{
@@ -127,6 +159,7 @@
   color: #fff;
   font-size: 18px;
   border-radius: 0;
+  text-align: center;
 }
 
 .edit-btn_hover{

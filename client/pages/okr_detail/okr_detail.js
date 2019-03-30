@@ -1,3 +1,8 @@
+import Okr from './../../models/okr.js';
+import Objective from './../../models/objective.js';
+import Keyresult from './../../models/keyresult.js';
+import { formatTime } from './../../utils/date.js';
+
 Page({
   data: {
     okr: {
@@ -32,24 +37,40 @@ Page({
       }]
     }
   },
-  handleShowActionSheet: function(event) {
-    wx.showActionSheet({
-      itemList: ['完成'],
-      itemColor: '#333',
-      success(res) {
-        console.log(res.tapIndex)
-      },
-      fail(res) {
-        console.log(res.errMsg)
-      }
+  onLoad: function(opt) {
+    let id = opt.id || 3;
+    Okr.show(id).then(res => {
+      this.setData({ okr: res.okr, id })
     })
   },
   handleKeyresultActionSheet: function(event) {
+    let id = event.currentTarget.dataset.id;
+    let status = event.currentTarget.dataset.status;
+    let index = event.currentTarget.dataset.index;
+    let statusChange = status ? 0 : 1;
+    let statusChangeDisplay = statusChange ? '标记为已完成' : '标记为未完成';
+
     wx.showActionSheet({
-      itemList: ['完成'],
+      itemList: [ statusChangeDisplay, '删除'],
       itemColor: '#333',
-      success(res) {
-        console.log(res.tapIndex)
+      success: (res)=> {
+        let tapIndex = res.tapIndex;
+        switch (tapIndex) {
+          case 0:
+            Keyresult.update(id, { status: statusChange }).then(res => {
+              let okr = this.data.okr;
+              okr.keyresults[index].status = statusChange;
+              this.setData({ okr })
+            })
+            break;
+          case 1:
+            Keyresult.delete(id).then(res => {
+              let okr = this.data.okr;
+              okr.keyresults.splice(index,1)
+              this.setData({ okr })
+            })
+            break;
+        }
       },
       fail(res) {
         console.log(res.errMsg)
@@ -57,15 +78,50 @@ Page({
     })
   },
   handleObjectiveActionSheet: function(event) {
+    let id = event.currentTarget.dataset.id;
+    let status = event.currentTarget.dataset.status;
+    let statusChange = status ? 0 : 1;
+    let statusChangeDisplay = statusChange ? '标记为已完成' : '标记为未完成';
+
     wx.showActionSheet({
-      itemList: ['完成','删除'],
+      itemList: [ statusChangeDisplay, '删除'],
       itemColor: '#333',
-      success(res) {
-        console.log(res.tapIndex)
+      success: (res)=> {
+        let tapIndex = res.tapIndex;
+        switch (tapIndex) {
+          case 0:
+            this.handleChangeObjective(id,statusChange)
+            break;
+          case 1:
+            this.handleDeleteObjective(id)
+            break;
+        }
       },
       fail(res) {
         console.log(res.errMsg)
       }
+    })
+  },
+  handleChangeObjective: function(id,status) {
+    Objective.update(id, { status }).then(res => {
+      let finished_time = status ? formatTime(new Date()) : null
+      let okr = this.data.okr;
+      okr.status = status;
+      okr.finished_time = finished_time;
+      this.setData({ okr })
+    })
+  },
+  handleDeleteObjective: function(id) {
+    Objective.delete(id).then( res => {
+      wx.showToast({
+        title: '删除成功',
+        icon: 'success',
+        duration: 1000,
+        mask: true
+      })
+      setTimeout(()=>{
+        wx.switchTab({ url: '/pages/okr/okr' })
+      },1000)
     })
   }
 })

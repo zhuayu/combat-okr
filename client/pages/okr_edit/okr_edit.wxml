@@ -8,10 +8,10 @@
     <view class="form-item" wx:key="{{item.id}}" wx:for="{{ keyresults }}">
       <view class="form-label">Keyresult 成果 {{index + 1}}：</view>
       <input type="text" class="form-input" placeholder="请输入你的目标" value="{{item.title}}" bindinput="handleChangeKeyresult" data-index="{{index}}"/>
-      <view class="form-ctrl" data-index="{{index}}" bindtap="handleDeleteKeyresult">-</view>
+      <view class="form-ctrl" data-id="{{item.id}}" data-index="{{index}}" bindtap="handleDeleteKeyresult">-</view>
     </view>
   </view>
   <view class="page-footer">
-    <button class="submit-btn" hover-class="submit-btn_hover" bindtap="handleSubmit">新增</button>
+    <button class="submit-btn" hover-class="submit-btn_hover" bindtap="handleSubmit">保存</button>
   </view>
 </view>

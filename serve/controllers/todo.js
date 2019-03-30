@@ -39,7 +39,7 @@ const todoController = {
   update: async function(ctx, next) {
     let id = ctx.params.id;
     let params = ctx.request.body;
-    params.finished_time = new Date();
+    params.finished_time = params.status ? new Date() : null;
     let todo = await Todo.update( id , params);
     ctx.state.code = 200;
     ctx.state.data.message = 'success';
