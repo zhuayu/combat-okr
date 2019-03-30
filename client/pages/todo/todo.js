@@ -40,7 +40,15 @@ Page({
             this.handleFinishTodo(id,index)
             break;
           case 2:
-            this.handleDeleteTodo(id,index)
+            wx.showModal({
+              title: '删除',
+              content: '是否确定要删除该 Todo',
+              success:(res)=> {
+                if (res.confirm) {
+                  this.handleDeleteTodo(id,index)
+                }
+              }
+            })
             break;
         }
       },
