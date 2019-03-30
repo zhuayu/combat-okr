@@ -1,4 +1,5 @@
 const Keyresult = require('./../models/keyresult.js');
+const TodoKeyresult = require('./../models/todoKeyresult.js');
 
 const keyresultController = {
   update: async function(ctx, next) {
@@ -12,6 +13,7 @@ const keyresultController = {
   delete: async function(ctx, next) {
     let id = ctx.params.id;
     await Keyresult.delete(id);
+    await TodoKeyresult.select({keyresult_id: id}).del();
     ctx.state.code = 200;
     ctx.state.data.message = 'success'
   }

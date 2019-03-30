@@ -5,12 +5,16 @@ class Base {
     this.table = props;
   }
 
+  knex() {
+    return knex(this.table)
+  }
+
   all(){
     return knex(this.table).select()
   }
 
   select(params) {
-    return knex(this.table).select().where(params).orderBy('created_time', 'desc')
+    return knex(this.table).select().where(params).orderBy('id', 'desc')
   }
 
   insert(params){

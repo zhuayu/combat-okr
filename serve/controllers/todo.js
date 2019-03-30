@@ -1,5 +1,6 @@
 const Todo = require('./../models/todo.js');
 const formate = require('./../utils/date.js');
+const TodoKeyresult = require('./../models/todoKeyresult.js');
 
 const todoController = {
   index: async function(ctx, next) {
@@ -46,7 +47,8 @@ const todoController = {
   },
   delete: async function(ctx, next) {
     let id = ctx.params.id;
-    let todo = await Todo.delete(id);
+    await Todo.delete(id);
+    await TodoKeyresult.select({todo_id: id}).del();
     ctx.state.code = 200;
     ctx.state.data.message = 'success';
   }

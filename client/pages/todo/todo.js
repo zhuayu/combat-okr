@@ -1,5 +1,8 @@
 import Todo from './../../models/todo.js';
 import { formatTime } from './../../utils/date.js';
+import TodoKeyresult from './../../models/todoKeyresult.js';
+
+
 Page({
   data: {
     todos: [],
@@ -34,7 +37,7 @@ Page({
         let tapIndex = res.tapIndex;
         switch (tapIndex) {
           case 0:
-            console.log('关联');
+            wx.navigateTo({url:'/pages/todo_keyresult/todo_keyresult?id=' + id })
             break;
           case 1:
             this.handleFinishTodo(id,index)

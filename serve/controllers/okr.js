@@ -1,6 +1,7 @@
 const Objective = require('./../models/objective.js');
 const Keyresult = require('./../models/keyresult.js');
 const formate = require('./../utils/date.js');
+const TodoKeyresult = require('./../models/todoKeyresult.js');
 
 const okrController = {
   update: async function(ctx, next) {
@@ -32,11 +33,25 @@ const okrController = {
     let objectives = await Objective.select({ id });
     let objective = objectives[0];
     let keyresults = await Keyresult.select({ objective_id: id });
-    objective.keyresults = keyresults;
     objective.created_time = formate.formatTime(objective.created_time);
     if(objective.finished_time){
       objective.finished_time = formate.formatTime(objective.finished_time);
     }
+    let keyresult_ids = keyresults.map( data => data.id);
+    let todoKeyresults = await TodoKeyresult.knex()
+      .whereIn('keyresult_id', keyresult_ids)
+      .leftJoin('todo','todo_keyresult.todo_id','todo.id')
+      .select({id: 'todo.id'},'todo_keyresult.keyresult_id','todo.title','todo.status')
+
+    let keyresultTmp = {}
+    keyresults.forEach(data => {
+      data.todos = []
+      keyresultTmp[data.id] = data;
+    })
+    todoKeyresults.forEach(data =>{
+      keyresultTmp[data.keyresult_id].todos.push(data);
+    })
+    objective.keyresults = Object.values(keyresults);
     ctx.state.code = 200;
     ctx.state.data.okr = objective;
   },
