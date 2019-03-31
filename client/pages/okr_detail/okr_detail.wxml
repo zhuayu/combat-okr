@@ -19,7 +19,7 @@
       </view>
     </view>
   </view>
-  <view class="page-footer">
+  <!-- <view class="page-footer">
     <navigator url="/pages/okr_edit/okr_edit?id={{id}}" class="edit-btn" hover-class="edit-btn_hover">编辑</navigator>
-  </view>
+  </view> -->
 </view>

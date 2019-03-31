@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.7.24)
 # Database: combat-okr
-# Generation Time: 2019-03-27 09:30:42 +0000
+# Generation Time: 2019-03-31 15:46:03 +0000
 # ************************************************************
 
 
@@ -35,6 +35,16 @@ CREATE TABLE `keyresult` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+LOCK TABLES `keyresult` WRITE;
+/*!40000 ALTER TABLE `keyresult` DISABLE KEYS */;
+
+INSERT INTO `keyresult` (`id`, `objective_id`, `title`, `status`, `created_time`, `finished_time`)
+VALUES
+	(31,13,'打开速度快 30%',0,'2019-03-31 20:31:25',NULL),
+	(32,13,'感知上也很快',1,'2019-03-31 20:31:25','2019-03-31 20:32:57');
+
+/*!40000 ALTER TABLE `keyresult` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 # Dump of table objective
@@ -52,6 +62,15 @@ CREATE TABLE `objective` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+LOCK TABLES `objective` WRITE;
+/*!40000 ALTER TABLE `objective` DISABLE KEYS */;
+
+INSERT INTO `objective` (`id`, `user_id`, `title`, `status`, `created_time`, `finished_time`)
+VALUES
+	(13,1,'我想让网站打开速度快一些',0,'2019-03-31 20:31:25',NULL);
+
+/*!40000 ALTER TABLE `objective` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 # Dump of table todo
@@ -69,6 +88,18 @@ CREATE TABLE `todo` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+LOCK TABLES `todo` WRITE;
+/*!40000 ALTER TABLE `todo` DISABLE KEYS */;
+
+INSERT INTO `todo` (`id`, `user_id`, `title`, `status`, `created_time`, `finished_time`)
+VALUES
+	(11,1,'图片资源压缩和代理',0,'2019-03-31 20:29:15',NULL),
+	(12,1,'JavaScript 代码压缩',0,'2019-03-31 20:29:21',NULL),
+	(13,1,'替换提及较大的资源库',0,'2019-03-31 20:29:27',NULL),
+	(14,1,'添加 Loading',1,'2019-03-31 20:31:34','2019-03-31 20:32:49');
+
+/*!40000 ALTER TABLE `todo` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 # Dump of table todo_keyresult
@@ -83,6 +114,18 @@ CREATE TABLE `todo_keyresult` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+LOCK TABLES `todo_keyresult` WRITE;
+/*!40000 ALTER TABLE `todo_keyresult` DISABLE KEYS */;
+
+INSERT INTO `todo_keyresult` (`id`, `todo_id`, `keyresult_id`)
+VALUES
+	(24,14,32),
+	(25,13,31),
+	(26,12,31),
+	(29,11,31);
+
+/*!40000 ALTER TABLE `todo_keyresult` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 # Dump of table user
@@ -94,9 +137,21 @@ CREATE TABLE `user` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `open_id` varchar(255) DEFAULT NULL,
   `union_id` varchar(255) DEFAULT NULL,
+  `created_time` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+LOCK TABLES `user` WRITE;
+/*!40000 ALTER TABLE `user` DISABLE KEYS */;
+
+INSERT INTO `user` (`id`, `open_id`, `union_id`, `created_time`)
+VALUES
+	(1,'o3V8Y42qHoT92lbVC8iLPcuX4q-Q',NULL,NULL),
+	(2,'o3V8Y42qHoT2lbVC8iLPcuX4q-Q',NULL,NULL),
+	(3,'o3V8Y42qHoT92lbVC8iLcuX4q-Q',NULL,NULL);
+
+/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 
