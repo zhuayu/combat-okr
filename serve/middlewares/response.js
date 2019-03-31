@@ -5,6 +5,8 @@ const debug = require('debug')('koa-app')
  */
 module.exports = async function (ctx, next) {
   try {
+    ctx.state.code = 0
+    ctx.state.data = {}
     await next()
 
     // 处理响应结果
@@ -16,8 +18,8 @@ module.exports = async function (ctx, next) {
     // }
     console.log(ctx.url)
     ctx.body = ctx.body ? ctx.body : {
-      code: ctx.state.code !== undefined ? ctx.state.code : 0,
-      data: ctx.state.data !== undefined ? ctx.state.data : {}
+      code: ctx.state.code,
+      data: ctx.state.data
     }
   } catch (e) {
     // catch 住全局的错误信息

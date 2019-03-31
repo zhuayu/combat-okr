@@ -1,0 +1,46 @@
+.objective-created-btn{
+  height: 40px;
+  line-height: 40px;
+  background: #666;
+  color: #fff;
+  font-size: 18px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.objective-item{
+  position: relative;
+  background: #f5f5f5;
+  padding: 10px;
+  margin-bottom: 5px;
+  overflow: hidden;
+}
+
+.objective-item.finished:after{
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  width: 80px;
+  height: 80px;
+  border: 2px solid #999;
+  content: '完成';
+  line-height: 78px;
+  text-align: center;
+  font-size: 22px;
+  color: #999;
+  border-radius: 50%;
+  opacity: .4;
+  transform: rotate(-45deg);
+}
+
+.objective-title{
+  font-size: 14px;
+  line-height: 20px;
+  color: #333;
+  margin-bottom: 4px;
+}
+
+.objective-created_time{
+  font-size: 12px;
+  color: #999;
+}
