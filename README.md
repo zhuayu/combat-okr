@@ -32,10 +32,8 @@ OKR([Objectives and Key Results](https://wiki.mbalib.com/wiki/Objectives_and_Key
 * 产品流程图（无）
 * 效果图
 
-![图片](https://uploader.shimo.im/f/wnGM0POHGIwSqnqz.png!thumbnail)![图片](https://uploader.shimo.im/f/egBmGS95xtIu2wGK.png!thumbnail)![图片](https://uploader.shimo.im/f/6L2rsN1aD0YQ3Ifr.png!thumbnail)
-![图片](https://uploader.shimo.im/f/66pVBzyFDUkeTj5n.png!thumbnail)![图片](https://uploader.shimo.im/f/6zsp6l58Md8HnIZ0.png!thumbnail)![图片](https://uploader.shimo.im/f/SFInKgDzRKsB8Yms.png!thumbnail)
-![图片](https://uploader.shimo.im/f/wFRawPL5cfADNciD.png!thumbnail)![图片](https://uploader.shimo.im/f/qx2Xy0vxjb4DZyqi.png!thumbnail)![图片](https://uploader.shimo.im/f/8FeZjJrRUy0LAH2f.png!thumbnail)
-![图片](https://uploader.shimo.im/f/6ffyA37oW4kChgvC.png!thumbnail)![图片](https://uploader.shimo.im/f/iYXLGoHbEsAPZOvJ.png!thumbnail)![图片](https://uploader.shimo.im/f/6sT70HR0IhkimEyF.png!thumbnail)
+![图片](./okr.png)
+
 ### 1.6 - 效果示例图
 ## 2-项目剖析页
 ### 2.1 - 项目解读
@@ -178,6 +176,7 @@ Koa 是一个新的 web 框架，由 Express 幕后的原班人马打造， 致�
 
 任务提示：
 1. 参考小程序文档：[https://developers.weixin.qq.com/miniprogram/dev/api/wx.login.html](https://developers.weixin.qq.com/miniprogram/dev/api/wx.login.html)
+2. 使用 koa-bodyparser 获取
 2. 创建中间件 middlewares/users.js ，获取 ctx.headers 中的 token 字段进行解密，解密后返回的用户 id 存放在 ctx.state.user_id 中进行备用。
 3. 使用 testAPI 进行测试，登录后请求 testAPI 返回该用户的 id 。
 
